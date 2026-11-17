@@ -1,0 +1,247 @@
+{
+  "name": "ramu-plugins",
+  "owner": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "metadata": {
+    "description": "Plugins for Ramu, listed on getramu.dev/plugins. The same file works as a Claude Code marketplace."
+  },
+  "plugins": [
+    {
+      "name": "fly-cli",
+      "source": "./plugins/fly-cli",
+      "description": "Launch and deploy apps on Fly.io through flyctl, signed in with a token kept on the host.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://fly.io",
+      "category": "deploy",
+      "keywords": [
+        "fly",
+        "flyio",
+        "deploy",
+        "hosting"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [
+            "go",
+            "rails"
+          ],
+          "adds": {
+            "skills": 1,
+            "credentials": [
+              "Fly.io token"
+            ],
+            "cli": "fly"
+          }
+        }
+      }
+    },
+    {
+      "name": "grafana-data",
+      "source": "./plugins/grafana-data",
+      "description": "Read Grafana data sources in Ramu dashboards with a Viewer service account token.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://grafana.com",
+      "category": "data",
+      "keywords": [
+        "grafana",
+        "prometheus",
+        "metrics",
+        "observability",
+        "dashboard"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "adds": {
+            "skills": 1,
+            "credentials": [
+              "Grafana service account token"
+            ],
+            "dataSources": [
+              "Grafana"
+            ]
+          },
+          "companion": "grafana-mcp"
+        }
+      }
+    },
+    {
+      "name": "amplitude-data",
+      "source": "./plugins/amplitude-data",
+      "description": "Read Amplitude event counts in Ramu dashboards with a project's API key and secret key.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://amplitude.com",
+      "category": "data",
+      "keywords": [
+        "amplitude",
+        "analytics",
+        "events",
+        "product"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "adds": {
+            "skills": 1,
+            "credentials": [
+              "Amplitude API key"
+            ],
+            "dataSources": [
+              "Amplitude"
+            ]
+          },
+          "companion": "amplitude"
+        }
+      }
+    },
+    {
+      "name": "salesforce-data",
+      "source": "./plugins/salesforce-data",
+      "description": "Read Salesforce records with SOQL in Ramu dashboards, through your own connected app's sign-in.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://www.salesforce.com",
+      "category": "data",
+      "keywords": [
+        "salesforce",
+        "crm",
+        "soql",
+        "opportunities"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "adds": {
+            "skills": 1,
+            "credentials": [
+              "Salesforce"
+            ],
+            "dataSources": [
+              "Salesforce"
+            ]
+          },
+          "companion": "salesforce-development"
+        }
+      }
+    },
+    {
+      "name": "meshy",
+      "source": "./plugins/meshy",
+      "description": "Make textured, rigged and animated 3D models for games with Meshy, on your Meshy API key.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://www.meshy.ai",
+      "category": "media",
+      "keywords": [
+        "meshy",
+        "3d",
+        "model",
+        "game",
+        "glb",
+        "rigging",
+        "animation"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "adds": {
+            "skills": 1,
+            "mcpServers": 1,
+            "credentials": [
+              "Meshy API key"
+            ],
+            "abilities": [
+              "model_3d"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "tripo",
+      "source": "./plugins/tripo",
+      "description": "Make 3D models for games with Tripo from a description or a picture, and rig and animate them, on your Tripo API key.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://www.tripo3d.ai",
+      "category": "media",
+      "keywords": [
+        "tripo",
+        "3d",
+        "model",
+        "game",
+        "glb",
+        "image-to-3d",
+        "animation"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "adds": {
+            "skills": 1,
+            "mcpServers": 1,
+            "credentials": [
+              "Tripo API key"
+            ],
+            "abilities": [
+              "model_3d"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "godot",
+      "source": "./plugins/godot",
+      "description": "Build, check and export Godot 4 games through the godot command, including a web export that publishes like any static site.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://godotengine.org",
+      "category": "games",
+      "keywords": [
+        "godot",
+        "game",
+        "engine",
+        "gdscript",
+        "3d",
+        "2d",
+        "export"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "adds": {
+            "skills": 1,
+            "cli": "godot"
+          }
+        }
+      }
+    }
+  ]
+}

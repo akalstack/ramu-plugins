@@ -1,0 +1,123 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "amplitude-data",
+  "version": "1.0.0",
+  "description": "Read Amplitude event counts in Ramu dashboards with a project's API key and secret key.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://amplitude.com",
+  "license": "MIT",
+  "keywords": [
+    "amplitude",
+    "analytics",
+    "events",
+    "product"
+  ],
+  "extensions": {
+    "dev.getramu": {
+      "credentials": [
+        {
+          "id": "keys",
+          "label": "Amplitude API key",
+          "env": "AMPLITUDE_API_KEY",
+          "kind": "token",
+          "page": "https://app.amplitude.com/analytics/settings/projects",
+          "scope": "The project's API key; its secret key goes below",
+          "fields": [
+            {
+              "id": "secret",
+              "label": "Secret key",
+              "env": "AMPLITUDE_SECRET_KEY",
+              "kind": "secret"
+            },
+            {
+              "id": "origin",
+              "label": "Data center",
+              "env": "AMPLITUDE_ORIGIN",
+              "kind": "url",
+              "values": [
+                "https://amplitude.com",
+                "https://analytics.eu.amplitude.com"
+              ],
+              "default": "https://amplitude.com"
+            }
+          ],
+          "check": {
+            "request": {
+              "url": "{field.origin}/api/2/events/list",
+              "headers": {
+                "Authorization": "Basic {basic.secret}"
+              }
+            }
+          }
+        }
+      ],
+      "dataSources": [
+        {
+          "id": "amplitude",
+          "label": "Amplitude",
+          "description": "Daily, weekly or monthly counts of one event.",
+          "credential": "keys",
+          "request": {
+            "url": "{field.origin}/api/2/events/segmentation?e={\"event_type\":{query.event:json}}&start={date.since.days}&end={date.today}&m={query.metric}&i={query.interval}",
+            "headers": {
+              "Authorization": "Basic {basic.secret}"
+            }
+          },
+          "query": [
+            {
+              "name": "event",
+              "type": "string",
+              "description": "The event type, as Amplitude names it.",
+              "maxLength": 200,
+              "required": true
+            },
+            {
+              "name": "metric",
+              "type": "string",
+              "values": [
+                "uniques",
+                "totals",
+                "pct_dau",
+                "average"
+              ],
+              "default": "uniques"
+            },
+            {
+              "name": "days",
+              "type": "number",
+              "description": "Days back from today.",
+              "min": 1,
+              "max": 365,
+              "default": 30
+            },
+            {
+              "name": "interval",
+              "type": "number",
+              "values": [
+                1,
+                7,
+                30
+              ],
+              "default": 1
+            }
+          ],
+          "rows": {
+            "shape": "series",
+            "dates": "data.xValues",
+            "values": "data.series",
+            "labels": "data.seriesLabels",
+            "label": "{query.event}"
+          }
+        }
+      ],
+      "keywords": [
+        "amplitude",
+        "analytics"
+      ],
+      "companion": "amplitude"
+    }
+  }
+}

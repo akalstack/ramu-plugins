@@ -1,0 +1,45 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "meshy",
+  "version": "1.0.0",
+  "description": "Make textured, rigged and animated 3D models for games with Meshy, on your Meshy API key.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://www.meshy.ai",
+  "license": "MIT",
+  "keywords": ["meshy", "3d", "model", "game", "glb", "rigging", "animation"],
+  "extensions": {
+    "dev.getramu": {
+      "credentials": [
+        {
+          "id": "token",
+          "label": "Meshy API key",
+          "env": "MESHY_API_KEY",
+          "kind": "token",
+          "page": "https://www.meshy.ai/developers/keys",
+          "scope": "An API key; Meshy's API needs the Pro plan or above",
+          "pattern": "^msy_",
+          "check": {
+            "request": {
+              "url": "https://api.meshy.ai/openapi/v1/balance"
+            }
+          }
+        }
+      ],
+      "abilities": {
+        "model_3d": {
+          "server": "meshy",
+          "tool": "meshy_text_to_3d",
+          "fromImage": "meshy_image_to_3d",
+          "refine": "meshy_text_to_3d_refine",
+          "status": "meshy_get_task_status",
+          "balance": "meshy_check_balance",
+          "downloads": ["https://assets.meshy.ai", "https://*.meshy.ai"]
+        }
+      },
+      "keywords": ["3d", "model", "game", "meshy"]
+    }
+  }
+}

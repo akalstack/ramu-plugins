@@ -1,0 +1,22 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "godot",
+  "version": "1.0.0",
+  "description": "Build, check and export Godot 4 games through the godot command, including a web export that publishes like any static site.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://godotengine.org",
+  "license": "MIT",
+  "keywords": ["godot", "game", "engine", "gdscript", "3d", "2d", "export"],
+  "extensions": {
+    "dev.getramu": {
+      "cli": {
+        "binaries": ["godot", "godot4"],
+        "reads": [["--version"], ["--help"], ["--headless", "--check-only"], ["--headless", "--quit", "--check-only"]]
+      },
+      "keywords": ["godot", "game"]
+    }
+  }
+}

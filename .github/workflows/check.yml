@@ -1,0 +1,48 @@
+name: Check plugins
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11
+      - name: Build the ramu CLI
+        run: |
+          git clone --depth 1 https://github.com/akalstack/ramu.git "$RUNNER_TEMP/ramu"
+          cd "$RUNNER_TEMP/ramu"
+          pnpm install --frozen-lockfile --filter @ramu/server...
+          pnpm --filter @ramu/server build
+      - name: Every plugin passes ramu plugin check
+        run: |
+          status=0
+          for plugin in plugins/*/; do
+            echo "::group::$plugin"
+            node "$RUNNER_TEMP/ramu/apps/server/dist/cli.js" plugin check "$plugin" || status=1
+            echo "::endgroup::"
+          done
+          exit $status
+      - name: Every commit on the branch is signed
+        if: github.event_name == 'pull_request'
+        run: |
+          # An empty allowed-signers file makes Git report an SSH signature as U (unknown signer), not N (none).
+          git config gpg.ssh.allowedSignersFile /dev/null
+          unsigned=$(git log --format='%H %G?' "origin/${{ github.base_ref }}..HEAD" | awk '$2 == "N" { print $1 }')
+          if [ -n "$unsigned" ]; then
+            echo "Sign these commits (see CONTRIBUTING.md): $unsigned"
+            exit 1
+          fi

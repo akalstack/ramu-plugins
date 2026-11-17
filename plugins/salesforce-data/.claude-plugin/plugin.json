@@ -1,0 +1,81 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "salesforce-data",
+  "version": "1.0.0",
+  "description": "Read Salesforce records with SOQL in Ramu dashboards, through your own connected app's sign-in.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://www.salesforce.com",
+  "license": "MIT",
+  "keywords": [
+    "salesforce",
+    "crm",
+    "soql",
+    "opportunities"
+  ],
+  "extensions": {
+    "dev.getramu": {
+      "credentials": [
+        {
+          "id": "org",
+          "label": "Salesforce",
+          "env": "SALESFORCE_ACCESS_TOKEN",
+          "kind": "sign-in",
+          "signIn": {
+            "authorizeUrl": "https://login.salesforce.com/services/oauth2/authorize",
+            "tokenUrl": "https://login.salesforce.com/services/oauth2/token",
+            "scopes": [
+              "api",
+              "refresh_token"
+            ],
+            "sandbox": {
+              "label": "Sandbox",
+              "authorizeUrl": "https://test.salesforce.com/services/oauth2/authorize",
+              "tokenUrl": "https://test.salesforce.com/services/oauth2/token"
+            },
+            "clientPage": "https://help.salesforce.com/s/articleView?id=sf.connected_app_create.htm",
+            "instanceField": "instance_url"
+          },
+          "check": {
+            "request": {
+              "url": "{field.instance}/services/oauth2/userinfo"
+            },
+            "identity": "preferred_username"
+          }
+        }
+      ],
+      "dataSources": [
+        {
+          "id": "salesforce",
+          "label": "Salesforce",
+          "description": "One SOQL SELECT; nested fields read by path, such as Account.Name.",
+          "credential": "org",
+          "request": {
+            "url": "{field.instance}/services/data/v62.0/query?q={query.soql}"
+          },
+          "query": [
+            {
+              "name": "soql",
+              "type": "string",
+              "description": "A SOQL SELECT.",
+              "pattern": "^\\s*select\\s",
+              "maxLength": 4000,
+              "required": true
+            }
+          ],
+          "rows": {
+            "shape": "objects",
+            "path": "records"
+          }
+        }
+      ],
+      "keywords": [
+        "salesforce",
+        "crm"
+      ],
+      "companion": "salesforce-development"
+    }
+  }
+}

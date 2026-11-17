@@ -1,0 +1,113 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "grafana-data",
+  "version": "1.0.0",
+  "description": "Read Grafana data sources in Ramu dashboards with a Viewer service account token.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://grafana.com",
+  "license": "MIT",
+  "keywords": [
+    "grafana",
+    "prometheus",
+    "metrics",
+    "observability",
+    "dashboard"
+  ],
+  "extensions": {
+    "dev.getramu": {
+      "credentials": [
+        {
+          "id": "token",
+          "label": "Grafana service account token",
+          "env": "GRAFANA_SERVICE_ACCOUNT_TOKEN",
+          "kind": "token",
+          "page": "https://grafana.com/docs/grafana/latest/administration/service-accounts/",
+          "scope": "A service account with the Viewer role",
+          "pattern": "^glsa_",
+          "fields": [
+            {
+              "id": "url",
+              "label": "Grafana address",
+              "env": "GRAFANA_URL",
+              "kind": "url",
+              "placeholder": "https://acme.grafana.net"
+            }
+          ],
+          "check": {
+            "request": {
+              "url": "{field.url}/api/search?limit=1"
+            }
+          }
+        }
+      ],
+      "dataSources": [
+        {
+          "id": "grafana",
+          "label": "Grafana",
+          "description": "Runs one query against a Grafana data source and returns its first frame's columns.",
+          "credential": "token",
+          "readOnly": true,
+          "request": {
+            "method": "POST",
+            "url": "{field.url}/api/ds/query",
+            "body": {
+              "from": "{query.from}",
+              "to": "{query.to}",
+              "queries": [
+                {
+                  "refId": "A",
+                  "datasource": {
+                    "uid": "{query.datasource}"
+                  },
+                  "...": "{query.query}"
+                }
+              ]
+            }
+          },
+          "query": [
+            {
+              "name": "datasource",
+              "type": "string",
+              "description": "The data source's uid, from its page in Grafana.",
+              "maxLength": 120,
+              "required": true
+            },
+            {
+              "name": "query",
+              "type": "object",
+              "description": "The data source's own query fields, such as { expr } for Prometheus or { rawSql, format: 'table' } for SQL.",
+              "maxLength": 4000,
+              "required": true
+            },
+            {
+              "name": "from",
+              "type": "string",
+              "default": "now-24h",
+              "maxLength": 40
+            },
+            {
+              "name": "to",
+              "type": "string",
+              "default": "now",
+              "maxLength": 40
+            }
+          ],
+          "rows": {
+            "shape": "columns",
+            "names": "results.A.frames.0.schema.fields",
+            "nameKey": "name",
+            "values": "results.A.frames.0.data.values"
+          }
+        }
+      ],
+      "keywords": [
+        "grafana",
+        "metrics"
+      ],
+      "companion": "grafana-mcp"
+    }
+  }
+}

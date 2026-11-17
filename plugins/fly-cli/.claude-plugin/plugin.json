@@ -1,0 +1,113 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "fly-cli",
+  "version": "1.0.0",
+  "description": "Launch and deploy apps on Fly.io through flyctl, signed in with a token kept on the host.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://fly.io",
+  "license": "MIT",
+  "keywords": [
+    "fly",
+    "flyio",
+    "deploy",
+    "hosting"
+  ],
+  "extensions": {
+    "dev.getramu": {
+      "credentials": [
+        {
+          "id": "token",
+          "label": "Fly.io token",
+          "env": "FLY_API_TOKEN",
+          "kind": "token",
+          "page": "https://fly.io/dashboard/personal/tokens",
+          "scope": "An organization deploy token (fly tokens create org), or a personal token"
+        }
+      ],
+      "cli": {
+        "binaries": [
+          "fly",
+          "flyctl"
+        ],
+        "reads": [
+          [
+            "--help"
+          ],
+          [
+            "-h"
+          ],
+          [
+            "help"
+          ],
+          [
+            "--version"
+          ],
+          [
+            "version"
+          ],
+          [
+            "auth",
+            "whoami"
+          ],
+          [
+            "status"
+          ],
+          [
+            "logs",
+            "--no-tail"
+          ],
+          [
+            "apps",
+            "list"
+          ],
+          [
+            "machines",
+            "list"
+          ],
+          [
+            "releases"
+          ],
+          [
+            "secrets",
+            "list"
+          ],
+          [
+            "config",
+            "show"
+          ],
+          [
+            "orgs",
+            "list"
+          ],
+          [
+            "ips",
+            "list"
+          ],
+          [
+            "certs",
+            "list"
+          ],
+          [
+            "certs",
+            "show"
+          ],
+          [
+            "volumes",
+            "list"
+          ]
+        ]
+      },
+      "stacks": [
+        "go",
+        "rails"
+      ],
+      "keywords": [
+        "fly",
+        "deploy"
+      ]
+    }
+  }
+}
