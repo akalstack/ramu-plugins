@@ -1,13 +1,13 @@
 {
   "$schema": "https://getramu.dev/schema/plugin.json",
   "name": "tripo",
-  "version": "1.0.0",
-  "description": "Make 3D models for games with Tripo from a description or a picture, and rig and animate them, on your Tripo API key.",
+  "version": "1.1.0",
+  "description": "Make 3D models for games with Tripo's own MCP tools from a description or a picture, and rig, animate, texture and convert them, on your Tripo API key.",
   "author": {
     "name": "Akalstack",
     "url": "https://akalstack.com"
   },
-  "homepage": "https://www.tripo3d.ai",
+  "homepage": "https://developers.tripo3d.ai/en/docs/cli",
   "license": "MIT",
   "keywords": ["tripo", "3d", "model", "game", "glb", "image-to-3d", "animation"],
   "extensions": {
@@ -19,7 +19,7 @@
           "env": "TRIPO_API_KEY",
           "kind": "token",
           "page": "https://platform.tripo3d.ai/api-keys",
-          "scope": "An API key from the Tripo platform",
+          "scope": "An API key from the Tripo platform's international site",
           "pattern": "^tsk_",
           "check": {
             "request": {
@@ -31,10 +31,10 @@
       "abilities": {
         "model_3d": {
           "server": "tripo",
-          "tool": "tripo_text_to_model",
-          "fromImage": "tripo_image_to_model",
+          "tool": "tripo_text_to_3d",
           "status": "tripo_task_status",
           "balance": "tripo_balance",
+          "arguments": { "model": "v3.1" },
           "downloads": ["https://*.tripo3d.com", "https://*.tripo3d.ai"]
         }
       },

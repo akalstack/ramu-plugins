@@ -1,9 +1,13 @@
 {
   "mcpServers": {
     "tripo": {
-      "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/server/index.mjs"],
-      "env": { "TRIPO_API_KEY": "${TRIPO_API_KEY}" }
+      "command": "npx",
+      "args": ["-y", "tripo-cli@0.11.2", "mcp", "--toolset", "full"],
+      "env": {
+        "TRIPO_API_KEY": "${TRIPO_API_KEY}",
+        "TRIPO_ANALYTICS_ENABLED": "0",
+        "TRIPO_NO_UPDATE_CHECK": "1"
+      }
     }
   }
 }
