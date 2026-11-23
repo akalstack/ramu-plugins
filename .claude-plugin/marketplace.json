@@ -189,7 +189,7 @@
       "name": "tripo",
       "source": "./plugins/tripo",
       "description": "Make 3D models for games with Tripo's own MCP tools from a description or a picture, and rig, animate, texture and convert them, on your Tripo API key.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": {
         "name": "Akalstack"
       },

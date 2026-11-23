@@ -1,7 +1,7 @@
 {
   "$schema": "https://getramu.dev/schema/plugin.json",
   "name": "tripo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Make 3D models for games with Tripo's own MCP tools from a description or a picture, and rig, animate, texture and convert them, on your Tripo API key.",
   "author": {
     "name": "Akalstack",
@@ -32,6 +32,7 @@
         "model_3d": {
           "server": "tripo",
           "tool": "tripo_text_to_3d",
+          "fromImage": "tripo_image_to_3d",
           "status": "tripo_task_status",
           "balance": "tripo_balance",
           "arguments": { "model": "v3.1" },
