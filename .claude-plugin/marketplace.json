@@ -12,7 +12,7 @@
       "name": "fly-cli",
       "source": "./plugins/fly-cli",
       "description": "Launch and deploy apps on Fly.io through flyctl, signed in with a token kept on the host.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Akalstack"
       },
@@ -31,6 +31,10 @@
             "go",
             "rails"
           ],
+          "companionFrom": {
+            "name": "fly",
+            "index": "https://github.com/superfly/skills"
+          },
           "adds": {
             "skills": 1,
             "credentials": [
