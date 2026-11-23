@@ -1,0 +1,41 @@
+{
+  "$schema": "https://getramu.dev/schema/plugin.json",
+  "name": "higgsfield-media",
+  "version": "1.0.0",
+  "description": "Make video, images, audio and more with Higgsfield's own MCP server, signed in with your Higgsfield account.",
+  "author": {
+    "name": "Akalstack",
+    "url": "https://akalstack.com"
+  },
+  "homepage": "https://higgsfield.ai/mcp",
+  "license": "MIT",
+  "keywords": ["higgsfield", "video", "image", "audio", "voice", "upscale", "ai-video"],
+  "extensions": {
+    "dev.getramu": {
+      "accounts": [
+        {
+          "server": "higgsfield",
+          "label": "Higgsfield account"
+        }
+      ],
+      "abilities": {
+        "video_generation": {
+          "server": "higgsfield",
+          "tool": "generate_video",
+          "status": "job_status",
+          "balance": "balance",
+          "params": "params",
+          "arguments": {
+            "model": "seedance_2_5"
+          },
+          "downloads": [
+            "https://*.higgsfield.ai",
+            "https://d2ol7oe51mr4n9.cloudfront.net",
+            "https://d8j0ntlcm91z4.cloudfront.net"
+          ]
+        }
+      },
+      "keywords": ["video", "image", "audio", "higgsfield"]
+    }
+  }
+}

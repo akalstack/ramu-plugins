@@ -214,6 +214,46 @@
       }
     },
     {
+      "name": "higgsfield-media",
+      "source": "./plugins/higgsfield-media",
+      "description": "Make video, images, audio and more with Higgsfield's own MCP server, signed in with your Higgsfield account.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Akalstack"
+      },
+      "homepage": "https://higgsfield.ai/mcp",
+      "category": "media",
+      "keywords": [
+        "higgsfield",
+        "video",
+        "image",
+        "audio",
+        "voice",
+        "upscale",
+        "ai-video"
+      ],
+      "extensions": {
+        "dev.getramu": {
+          "byRamu": true,
+          "stacks": [],
+          "companionFrom": {
+            "name": "higgsfield",
+            "index": "https://github.com/higgsfield-ai/skills"
+          },
+          "adds": {
+            "skills": 1,
+            "mcpServers": 1,
+            "accounts": [
+              "Higgsfield account"
+            ],
+            "abilities": [
+              "video_generation"
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "godot",
       "source": "./plugins/godot",
       "description": "Build, check and export Godot 4 games through the godot command, including a web export that publishes like any static site.",
