@@ -1,7 +1,7 @@
 {
   "$schema": "https://getramu.dev/schema/plugin.json",
   "name": "higgsfield-media",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Make video, images, audio and more with Higgsfield's own MCP server, signed in with your Higgsfield account.",
   "author": {
     "name": "Akalstack",
@@ -19,6 +19,66 @@
         }
       ],
       "abilities": {
+        "image_generation": {
+          "server": "higgsfield",
+          "tool": "generate_image",
+          "status": "job_status",
+          "balance": "balance",
+          "params": "params",
+          "arguments": {
+            "model": "gpt_image_2_6"
+          },
+          "downloads": [
+            "https://*.higgsfield.ai",
+            "https://d2ol7oe51mr4n9.cloudfront.net",
+            "https://d8j0ntlcm91z4.cloudfront.net"
+          ]
+        },
+        "speech": {
+          "server": "higgsfield",
+          "tool": "generate_audio",
+          "status": "job_status",
+          "balance": "balance",
+          "params": "params",
+          "arguments": {
+            "model": "seed_audio"
+          },
+          "downloads": [
+            "https://*.higgsfield.ai",
+            "https://d2ol7oe51mr4n9.cloudfront.net",
+            "https://d8j0ntlcm91z4.cloudfront.net"
+          ]
+        },
+        "music": {
+          "server": "higgsfield",
+          "tool": "generate_audio",
+          "status": "job_status",
+          "balance": "balance",
+          "params": "params",
+          "arguments": {
+            "model": "suno_music"
+          },
+          "downloads": [
+            "https://*.higgsfield.ai",
+            "https://d2ol7oe51mr4n9.cloudfront.net",
+            "https://d8j0ntlcm91z4.cloudfront.net"
+          ]
+        },
+        "sound_effect": {
+          "server": "higgsfield",
+          "tool": "generate_audio",
+          "status": "job_status",
+          "balance": "balance",
+          "params": "params",
+          "arguments": {
+            "model": "mirelo_text_to_audio"
+          },
+          "downloads": [
+            "https://*.higgsfield.ai",
+            "https://d2ol7oe51mr4n9.cloudfront.net",
+            "https://d8j0ntlcm91z4.cloudfront.net"
+          ]
+        },
         "video_generation": {
           "server": "higgsfield",
           "tool": "generate_video",
@@ -35,7 +95,10 @@
           ]
         }
       },
-      "keywords": ["video", "image", "audio", "higgsfield"]
+      "keywords": ["video", "image", "audio", "higgsfield"],
+      "requires": {
+        "ramu": "0.1.0-alpha.24"
+      }
     }
   }
 }

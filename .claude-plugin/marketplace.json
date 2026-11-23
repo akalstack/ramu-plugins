@@ -225,7 +225,7 @@
       "name": "higgsfield-media",
       "source": "./plugins/higgsfield-media",
       "description": "Make video, images, audio and more with Higgsfield's own MCP server, signed in with your Higgsfield account.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Akalstack"
       },
@@ -255,6 +255,10 @@
               "Higgsfield account"
             ],
             "abilities": [
+              "image_generation",
+              "speech",
+              "music",
+              "sound_effect",
               "video_generation"
             ]
           }
