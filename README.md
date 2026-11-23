@@ -14,12 +14,13 @@ Akalstack maintains these plugins, and they live in [`plugins/`](plugins):
 
 | Plugin | Adds |
 | --- | --- |
-| [fly-cli](plugins/fly-cli) | flyctl through `platform_cli` and a deploy skill |
+| [fly-cli](plugins/fly-cli) | flyctl through `platform_cli` and a deploy skill, with Fly's own plugin offered beside it |
 | [grafana-data](plugins/grafana-data) | the `grafana` data source for dashboards |
 | [amplitude-data](plugins/amplitude-data) | the `amplitude` data source for dashboards |
 | [salesforce-data](plugins/salesforce-data) | the `salesforce` data source for dashboards, with a sign-in through your own connected app |
-| [meshy](plugins/meshy) | Meshy's MCP server mapped to 3D models, so `make_model` makes textured GLB models, and a game assets skill |
-| [tripo](plugins/tripo) | a Tripo MCP server mapped to 3D models, from words or a picture, with rigging and animation |
+| [higgsfield-media](plugins/higgsfield-media) | Higgsfield's hosted MCP server, signed in with your Higgsfield account, mapped to video so `make_video` makes clips, with Higgsfield's own plugin offered beside it |
+| [meshy](plugins/meshy) | Meshy's MCP server mapped to 3D models, so `make_model` makes textured GLB models, a game assets skill, and Meshy's own skills offered beside it |
+| [tripo](plugins/tripo) | Tripo's own MCP tools from `tripo-cli`, mapped to 3D models, with rigging, animation, texturing and conversion |
 | [godot](plugins/godot) | the `godot` command through `platform_cli` (checks run without asking, exports ask) and a Godot projects skill |
 
 ## Adding a plugin
