@@ -2,7 +2,7 @@
   "mcpServers": {
     "meshy": {
       "command": "npx",
-      "args": ["-y", "@meshy-ai/meshy-mcp-server@0.6.5"],
+      "args": ["-y", "@meshy-ai/meshy-mcp-server@0.6.12"],
       "env": { "MESHY_API_KEY": "${MESHY_API_KEY}" }
     }
   }

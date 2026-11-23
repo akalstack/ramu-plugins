@@ -145,7 +145,7 @@
       "name": "meshy",
       "source": "./plugins/meshy",
       "description": "Make textured, rigged and animated 3D models for games with Meshy, on your Meshy API key.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Akalstack"
       },
@@ -164,6 +164,10 @@
         "dev.getramu": {
           "byRamu": true,
           "stacks": [],
+          "companionFrom": {
+            "name": "meshy-3d-generation",
+            "index": "https://github.com/meshy-dev/meshy-3d-agent"
+          },
           "adds": {
             "skills": 1,
             "mcpServers": 1,
